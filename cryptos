@@ -1,0 +1,16 @@
+
+[1mFrom:[0m /mnt/c/Users/willi/dev/crypto_price_checker/lib/crypto_price_checker/APIService.rb:8 APIService#get_crypto_by_name:
+
+     [1;34m4[0m: [32mdef[0m [1;34mget_crypto_by_name[0m(name)
+     [1;34m5[0m:   @namestring =name.gsub([31m[1;31m"[0m[31m [1;31m"[0m[31m[0m, [31m[1;31m"[0m[31m_[1;31m"[0m[31m[0m)
+     [1;34m6[0m:   uri = URI([1;34;4mBASE_URI[0m + [31m[1;31m"[0m[31m#{@namestring}[0m[31m[1;31m"[0m[31m[0m)
+     [1;34m7[0m:   cryptos = make_request(uri)
+ =>  [1;34m8[0m:  binding.pry
+     [1;34m9[0m:   [32mif[0m cryptos[[31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m] != [1;36mnil[0m [1;34m#QUESTION - is this really a nil value that we're looking to test or some other value[0m
+    [1;34m10[0m:     @crypto1 = [1;34;4mCrypto[0m.new(cryptos)
+    [1;34m11[0m:    [32melse[0m
+    [1;34m12[0m:     [31m[1;31m"[0m[31mCrypto not listed on Coin Gecko. Don't get scammed![1;31m"[0m[31m[0m
+    [1;34m13[0m:   [32mend[0m
+    [1;34m14[0m: 
+    [1;34m15[0m: [32mend[0m
+

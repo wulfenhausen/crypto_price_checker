@@ -1,5 +1,5 @@
 class Crypto
-    attr_accessor :name, :description, :price
+    attr_accessor :name, :description, :id, :price, :shortdescription
   
     @@all = []
   
@@ -7,6 +7,8 @@ class Crypto
         @name = crypto_input["name"]
         @price = crypto_input["market_data"]["current_price"]["usd"]
         @description = crypto_input["description"]["en"]
+        @id = crypto_input["id"]
+        @shortdescription = @description.chomp("\n")
         @@all << self
           
     end
@@ -21,7 +23,5 @@ class Crypto
   
     def print_pretty
       puts @name
-    # puts @description
-    #  puts @price
     end
   end

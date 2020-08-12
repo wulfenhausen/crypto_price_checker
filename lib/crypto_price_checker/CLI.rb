@@ -9,47 +9,50 @@ class CLI
       end
   
     end
-  
+
   
     def main_menu
-      puts "Press 1 to enter a crypto to look up. Press 2 to exit: "
+      puts "Welcome to Crypto Price Checker! Type the name of the cryptocurrency you'd like to research:"
       @user_input = gets.chomp()
-  
-      case @user_input
-        when "1" #searching crypto
-            search_for_crypto
-            attribute_checker
-        when "2" #exit
-            exit
-        else
-            puts "invalid input"
-        end
-    end
-  
-    def search_for_crypto
-        puts "what cryptocurrency do you want to look for?"
-            @user_input = gets.chomp
-        @crypto = @API.get_crypto_by_name(@user_input)
-      if @crypto != "Crypto not listed on Coin Gecki. Don't get scammed!"
-      @crypto.print_pretty
-      else
-        puts @crypto
+      @crypto = @API.get_crypto_by_name(@user_input.downcase)
+      #binding.pry
+      if @crypto != nil #Crypto id nil
+        attribute_checker
       end
+  
     end
+  
+  
 
 
     def attribute_checker
+        puts "#{@user_input.capitalize} found! What would you like to do?"
+        puts "Type the number of the option to select it."
         puts "1. Description of the crypto"
         puts "2. Price of the crypto"
-        puts "3. Main menu"
+        puts "3. Search another crypto"
+        puts "4. Return the list of cryptos searched and their price"
+        puts "5. Exit the program"
         @user_input = gets.chomp
         case @user_input
             when "1"
-                puts @crypto.description
+              puts @crypto.shortdescription
+              sleep(2)
+              attribute_checker
             when "2"
-                puts "The price in US Dollars is $#{@crypto.price}."
+              puts "The price in US Dollars is $#{@crypto.price}."
+              sleep(2)
+              attribute_checker
             when "3"
-                main_menu
+              sleep(0.5)
+              main_menu
+            when "4"
+              #Build out this code
+              puts "You still need to test this!"
+              Crypto.all
+              #iteration, for each instance of the crypto class, iterate over and grab price and description
+            when "5"
+              exit
             else
                 puts "invalid input"
             
@@ -61,18 +64,7 @@ class CLI
 
 
 
-#    def price_checker
- #       puts "would you like to see the price? (Y/N)"
-  #      @user_input = gets.chomp
-   #     if @user_input.downcase == "y"
-    #        puts "The price in US Dollars is $#{@crypto.price}."
-     #   elsif @user_input.downcase == "n"
-      #      main_menu
-       # else
-        #    puts "invalid response"
-         #   price_checker
-       # end
-    #end
+
   
 
     

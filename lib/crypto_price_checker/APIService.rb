@@ -5,12 +5,14 @@ class APIService
       @namestring =name.gsub(" ", "_")
       uri = URI(BASE_URI + "#{@namestring}")
       cryptos = make_request(uri)
-     # binding.pry
-      if cryptos != nil
+     #binding.pry
+      if !cryptos["error"]
         @crypto1 = Crypto.new(cryptos)
        else
-        "Crypto not listed on Coin Gecki. Don't get scammed!"
+        puts "Crypto not listed on Coin Gecko. Don't get scammed!"
+        sleep(1.5)
       end
+
     end
   
     def make_request(uri)
@@ -19,14 +21,6 @@ class APIService
     end
 
    
-    #def lookformatchinresults(array_name)
-     # foundcrypto = array_name.detect {|x|x["name"].downcase == @namestring.downcase}
-      #if foundcrypto != nil
-       # @crypto1 = Crypto.new(foundcrypto)
-      #else
-       # "Crypto not found"
-      #end
-    #end
   
   
   
